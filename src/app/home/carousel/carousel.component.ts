@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
-import { ISlides } from '../slides';
+import { ISlides } from './models/interfaces/interfaces';
+import { RouterLink } from "@angular/router";
 
 @Component({
-  selector: 'app-box',
+  selector: 'app-carousel',
   standalone: true,
-  imports: [],
-  templateUrl: './box.component.html',
-  styleUrl: './box.component.css',
+  imports: [RouterLink],
+  templateUrl: './carousel.component.html',
+  styleUrl: './carousel.component.css'
 })
-export class BoxComponent {
-  slidesInfo: ISlides[] = [
+export class CarouselComponent {
+ slidesInfo: ISlides[] = [
     { id: 1, name: 'slide-1', url: '/photo_1.jpg' },
     { id: 2, name: 'slide-2', url: '/photo_2.jpg' },
     { id: 3, name: 'slide-3', url: '/photo_3.jpg' },

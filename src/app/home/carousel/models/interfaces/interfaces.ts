@@ -1,3 +1,4 @@
+
 export interface ISlides {
   id: number;
   name: string;
