@@ -1,10 +1,22 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { CarouselComponent } from './home/carousel/carousel.component';
-import { TodolistComponent } from './home/todolist/todolist.component';
+import { carouselGuard } from './home/carousel/models/services/carousel.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'carousel', component: CarouselComponent },
-  { path: 'todolist', component: TodolistComponent },
+  {
+    path: 'carousel',
+    loadComponent: () =>
+      import('./home/carousel/carousel.component').then(
+        (c) => c.CarouselComponent
+      ),
+    canActivate: [carouselGuard],
+  },
+  {
+    path: 'todolist',
+    loadComponent: () =>
+      import('./home/todolist/todolist.component').then(
+        (t) => t.TodolistComponent
+      ),
+  },
 ];
