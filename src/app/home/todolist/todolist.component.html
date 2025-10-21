@@ -1,2 +1,29 @@
 <a [routerLink]="['/']">Back Home</a>
-<p>todolist works!</p>
+<h2>Todo List Page</h2>
+<form [formGroup]="todoForm" (ngSubmit)="addTask()">
+  <input type="text" placeholder="Enter Your task" formControlName="task" />
+  <button type="submit" [disabled]="todoForm.invalid">Submit</button>
+</form>
+
+@if (tasks.length > 0) {
+<ul>
+  @for (task of tasks; track $index) {
+  <li>
+    <button (click)="removeTask($index)">X</button>
+
+    <span [style.textDecoration]="task.done ? 'line-through' : 'none'">
+      {{ task.title }}
+    </span>
+    <input
+      name="check"
+      type="checkbox"
+      placeholder="check as done"
+      [checked]="task.done"
+      (change)="toggleDone(task)"
+    />
+  </li>
+  }
+</ul>
+} @else {
+<p>No Records!</p>
+}
